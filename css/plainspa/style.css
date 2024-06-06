@@ -1,0 +1,10 @@
+﻿#plainspa-progress-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 4px;
+	background-color: #4caf50;
+	z-index: 10000;
+	transition: width 0.4s ease;
+}
