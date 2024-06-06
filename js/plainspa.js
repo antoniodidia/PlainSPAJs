@@ -81,3 +81,94 @@ function plainspaReadHtmlFile(fileName) {
 		xhr.send();
 	});
 }
+
+function plainspaExecuteScripts(htmlContent) {
+	var tempHtml = document.createElement('div');
+	tempHtml.innerHTML = htmlContent;
+
+	var scripts = tempHtml.getElementsByTagName('script');
+	for (var i = 0; i < scripts.length; i++) {
+		var script = document.createElement('script');
+		if (scripts[i].src) {
+			script.src = scripts[i].src;
+		} else {
+			script.text = scripts[i].text;
+		}
+		document.body.appendChild(script);
+	}
+}
+
+function plainspaExtractHtmlElements(htmlContent) {
+
+	var tempHtml = document.createElement('html');
+	tempHtml.innerHTML = htmlContent;
+
+
+	var bodyContent = '';
+	var bodyTag = tempHtml.getElementsByTagName('body')[0];
+	if (bodyTag) {
+		bodyContent = bodyTag.innerHTML;
+	}
+
+
+	var stylesContent = '';
+	var styleTags = tempHtml.getElementsByTagName('style');
+	for (var i = 0; i < styleTags.length; i++) {
+		stylesContent += styleTags[i].outerHTML;
+	}
+
+	var metaDescriptionContent = '';
+	var metaTags = tempHtml.getElementsByTagName('meta');
+	for (var i = 0; i < metaTags.length; i++) {
+		if (metaTags[i].getAttribute('name') === 'description') {
+			metaDescriptionContent = metaTags[i].getAttribute('content');
+			break;
+		}
+	}
+
+	var titleContent = '';
+	var titleTag = tempHtml.getElementsByTagName('title')[0];
+	if (titleTag) {
+		titleContent = titleTag.innerHTML;
+	}
+
+	return {
+		body: bodyContent,
+		styles: stylesContent,
+		metaDescription: metaDescriptionContent,
+		title: titleContent
+	};
+}
+
+function plainspaUpdateTitle(newTitle) {
+	// checks if newTitle is a string
+	if (typeof newTitle !== 'string') {
+		console.error('The parameter passed is not a string.');
+		return;
+	}
+
+	// modifies the content of the <title> tag with the value of the passed string
+	document.title = newTitle;
+}
+
+function plainspaUpdateMetaDescription(newDescription) {
+	// checks if newDescription is a string
+	if (typeof newDescription !== 'string') {
+		console.error('The parameter passed is not a string.');
+		return;
+	}
+
+	// find the tag <meta name="description">
+	const metaDescription = document.querySelector('meta[name="description"]');
+
+	// if the <meta name="description"> tag exists, update the content property
+	if (metaDescription) {
+		metaDescription.setAttribute('content', newDescription);
+	} else {
+		// if the <meta name="description"> tag does not exist, creates a new <meta> tag and adds it to the document
+		const newMeta = document.createElement('meta');
+		newMeta.name = 'description';
+		newMeta.content = newDescription;
+		document.head.appendChild(newMeta);
+	}
+}
