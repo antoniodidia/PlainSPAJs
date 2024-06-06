@@ -71,7 +71,6 @@ function plainspaReadHtmlFile(fileName) {
 					plainspaUpdateMetaDescription(result.metaDescription);
 					resolve(result.styles + result.body);
 				} else {
-					console.error(`Error reading file ${fileName}:`, xhr.statusText);
 					progressBar.remove();
 					reject(new Error(xhr.statusText));
 				}
@@ -143,29 +142,23 @@ function plainspaExtractHtmlElements(htmlContent) {
 function plainspaUpdateTitle(newTitle) {
 	// checks if newTitle is a string
 	if (typeof newTitle !== 'string') {
-		console.error('The parameter passed is not a string.');
 		return;
 	}
 
-	// modifies the content of the <title> tag with the value of the passed string
 	document.title = newTitle;
 }
 
 function plainspaUpdateMetaDescription(newDescription) {
 	// checks if newDescription is a string
 	if (typeof newDescription !== 'string') {
-		console.error('The parameter passed is not a string.');
 		return;
 	}
 
-	// find the tag <meta name="description">
 	const metaDescription = document.querySelector('meta[name="description"]');
 
-	// if the <meta name="description"> tag exists, update the content property
 	if (metaDescription) {
 		metaDescription.setAttribute('content', newDescription);
 	} else {
-		// if the <meta name="description"> tag does not exist, creates a new <meta> tag and adds it to the document
 		const newMeta = document.createElement('meta');
 		newMeta.name = 'description';
 		newMeta.content = newDescription;
