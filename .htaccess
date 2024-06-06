@@ -1,0 +1,10 @@
+# Make sure the rewrite module is enabled
+RewriteEngine On
+
+# Rewrite rule to rewrite everything in index.html except exceptions
+RewriteCond %{REQUEST_URI} !^/index.html
+RewriteCond %{REQUEST_URI} !^/pages/
+RewriteCond %{REQUEST_URI} !^/css/
+RewriteCond %{REQUEST_URI} !^/js/
+RewriteCond %{REQUEST_URI} !^/images/
+RewriteRule ^(.*)$ /index.html [L]
