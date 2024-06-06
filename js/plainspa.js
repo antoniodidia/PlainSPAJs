@@ -44,3 +44,40 @@ function plainspaAddProgressBar() {
 	progressBar.id = 'plainspa-progress-bar';
 	document.body.appendChild(progressBar);
 }
+
+function plainspaReadHtmlFile(fileName) {
+	return new Promise((resolve, reject) => {
+		var xhr = new XMLHttpRequest();
+
+		plainspaAddProgressBar();
+		var progressBar = document.getElementById('plainspa-progress-bar');
+
+		xhr.open('GET', '/pages/' + fileName + '.html', true);
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 1) {
+				progressBar.style.width = '0%';
+			} else if (xhr.readyState === 3) {
+				progressBar.style.width = '50%';
+			} else if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					progressBar.style.width = '100%';
+					setTimeout(() => {
+						progressBar.remove();
+					}, 500);
+					plainspaExecuteScripts(xhr.responseText);
+					var result = plainspaExtractHtmlElements(xhr.responseText);
+					plainspaUpdateTitle(result.title);
+					plainspaUpdateMetaDescription(result.metaDescription);
+					resolve(result.styles + result.body);
+				} else {
+					console.error(`Error reading file ${fileName}:`, xhr.statusText);
+					progressBar.remove();
+					reject(new Error(xhr.statusText));
+				}
+			}
+		};
+
+		xhr.send();
+	});
+}
