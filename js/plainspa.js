@@ -67,7 +67,7 @@ function plainspaReadHtmlFile(fileName) {
 					setTimeout(() => {
 						progressBar.remove();
 					}, 500);
-					plainspaExecuteScripts(xhr.responseText);
+					plainspaLaunchJs(xhr.responseText);
 					var result = plainspaExtractHtmlElements(xhr.responseText);
 					plainspaUpdateTitle(result.title);
 					plainspaUpdateMetaDescription(result.metaDescription);
@@ -83,7 +83,7 @@ function plainspaReadHtmlFile(fileName) {
 	});
 }
 
-function plainspaExecuteScripts(htmlContent) {
+function plainspaLaunchJs(htmlContent) {
 	var tempHtml = document.createElement('div');
 	tempHtml.innerHTML = htmlContent;
 
