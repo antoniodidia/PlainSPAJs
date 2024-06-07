@@ -12,6 +12,7 @@ Finally, create links between the pages using this example:
 
 ```html
 <a href="javascript:{};" onclick="plainspaNavigateTo('contact')">Contact Us</a>
+```
 
 The above example assumes that there is a contact.html file in the /pages subfolder.
 
