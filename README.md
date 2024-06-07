@@ -16,6 +16,6 @@ Finally, create links between the pages using this example:
 
 The above example assumes that there is a contact.html file in the /pages subfolder.
 
-The content of the various pages will be dynamically loaded into the <div id="plainspa-content"></div> of the index.html file.
+The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
 
 It is recommended to first practice in a test and isolated web space.
