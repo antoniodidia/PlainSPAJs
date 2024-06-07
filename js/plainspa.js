@@ -1,3 +1,5 @@
+// Copyright (c) Antonio Di Dia.  All Rights Reserved. Licensed under the MIT License. See LICENSE in the project root for license information.
+
 var requestPage = plainspaGetPath();
 
 if (requestPage.length == 0 || requestPage == "index.html") {
@@ -98,17 +100,14 @@ function plainspaExecuteScripts(htmlContent) {
 }
 
 function plainspaExtractHtmlElements(htmlContent) {
-
 	var tempHtml = document.createElement('html');
 	tempHtml.innerHTML = htmlContent;
-
 
 	var bodyContent = '';
 	var bodyTag = tempHtml.getElementsByTagName('body')[0];
 	if (bodyTag) {
 		bodyContent = bodyTag.innerHTML;
 	}
-
 
 	var stylesContent = '';
 	var styleTags = tempHtml.getElementsByTagName('style');
@@ -140,7 +139,6 @@ function plainspaExtractHtmlElements(htmlContent) {
 }
 
 function plainspaUpdateTitle(newTitle) {
-	// checks if newTitle is a string
 	if (typeof newTitle !== 'string') {
 		return;
 	}
@@ -149,7 +147,6 @@ function plainspaUpdateTitle(newTitle) {
 }
 
 function plainspaUpdateMetaDescription(newDescription) {
-	// checks if newDescription is a string
 	if (typeof newDescription !== 'string') {
 		return;
 	}
