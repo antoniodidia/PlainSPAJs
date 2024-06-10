@@ -14,7 +14,7 @@ Finally, create links between the pages using this example:
 <a href="javascript:{};" onclick="plainspaNavigateTo('contact')">Contact Us</a>
 ```
 
-The above example assumes that there is a contact.html file in the /pages folder.
+The above example assumes that there is a `contact.html` file in the `/pages` folder.
 
 You can also create links to a subdirectory and also pass parameters to the url this way:
 
@@ -22,7 +22,7 @@ You can also create links to a subdirectory and also pass parameters to the url 
 <li><a href="javascript:{};" onclick="plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
 ```
 
-The above example assumes that there is a aboutus.html file in the /pages/subfolder folder.
+The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
 
 The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
 
