@@ -98,7 +98,7 @@ function plainspaReadHtmlFile(fileName, pQuery) {
 					var result = plainspaExtractHtmlElements(xhr.responseText);
 					plainspaUpdateTitle(result.title);
 					plainspaUpdateMetaDescription(result.metaDescription);
-					resolve(result.styles + result.body);
+					resolve(result.styles + plainspaRemoveJs(result.body));
 				} else {
 					progressBar.remove();
 					reject(new Error(xhr.statusText));
@@ -177,6 +177,20 @@ function plainspaExtractHtmlElements(htmlContent) {
 		metaDescription: metaDescriptionContent,
 		title: titleContent
 	};
+}
+
+// remove js that are no longer needed
+function plainspaRemoveJs(html) {
+	var tempDiv = document.createElement('div');
+	tempDiv.innerHTML = html;
+
+	var scripts = tempDiv.getElementsByTagName('script');
+
+	while (scripts.length > 0) {
+		scripts[0].parentNode.removeChild(scripts[0]);
+	}
+
+	return tempDiv.innerHTML;
 }
 
 // update the page Title
