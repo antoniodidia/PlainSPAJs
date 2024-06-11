@@ -64,7 +64,12 @@ function plainspaLoadPage(page, pQuery) {
 }
 
 function plainspaAddProgressBar() {
-	var progressBar = document.createElement('div');
+	var progressBar = document.getElementById('plainspa-progress-bar');
+	if (progressBar) {
+		progressBar.parentNode.removeChild(progressBar);
+	}
+
+	progressBar = document.createElement('div');
 	progressBar.id = 'plainspa-progress-bar';
 	document.body.appendChild(progressBar);
 }
@@ -107,6 +112,12 @@ function plainspaReadHtmlFile(fileName, pQuery) {
 
 // extract all the js and add them to the document
 function plainspaLaunchJs(htmlContent) {
+
+	var elDivJsContainer = document.getElementById('plainspa-jscontainer');
+	if (elDivJsContainer) {
+		elDivJsContainer.parentNode.removeChild(elDivJsContainer);
+	}
+
 	var tempHtml = document.createElement('div');
 	tempHtml.innerHTML = htmlContent;
 
@@ -118,7 +129,13 @@ function plainspaLaunchJs(htmlContent) {
 		} else {
 			script.text = scripts[i].text;
 		}
-		document.body.appendChild(script);
+
+		elDivJsContainer = document.createElement('div');
+
+		elDivJsContainer.id = 'plainspa-jscontainer';
+		elDivJsContainer.appendChild(script);
+		document.body.appendChild(elDivJsContainer);
+
 	}
 }
 
