@@ -7,6 +7,7 @@ Extremely easy Javascript framework to create simple websites in Single Page App
 Upload the project files to your empty web space root (IIS or Apache) and start modifying the `index.html` file, which serves as the template for the website.
 
 Then, create the subpages and place them in the `/pages` folder.
+
 Each subpage can also contain `<title>` and `<meta name="description" content="">` tags.
 
 Finally, create links between the pages using this example:
