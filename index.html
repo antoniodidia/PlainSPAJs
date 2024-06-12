@@ -10,9 +10,9 @@
     <nav>
         <div class="titleMenu"><strong>PlainSPAJs Example</strong></div>
         <ul>
-            <li><a href="javascript:{};" onclick="plainspaNavigateTo('home')">Home</a></li>
-            <li><a href="javascript:{};" onclick="plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
-            <li><a href="javascript:{};" onclick="plainspaNavigateTo('contact')">Contact</a></li>
+            <li><a href="/home" onclick="return plainspaNavigateTo('home')">Home</a></li>
+            <li><a href="/subfolder/aboutus?value1=c&value2=d" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
+            <li><a href="/contact" onclick="return plainspaNavigateTo('contact')">Contact</a></li>
         </ul>
     </nav>
     
