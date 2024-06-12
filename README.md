@@ -21,7 +21,7 @@ The above example assumes that there is a `contact.html` file in the `/pages` fo
 You can also create links to a subdirectory and also pass parameters to the url this way:
 
 ```html
-<li><a href="/subfolder/aboutus?value1=c&value2=d" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
+<a href="/subfolder/aboutus?value1=c&value2=d" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a>
 ```
 
 The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
