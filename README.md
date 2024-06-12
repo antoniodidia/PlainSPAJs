@@ -13,7 +13,7 @@ Each subpage can also contain `<title>` and `<meta name="description" content=""
 Finally, create links between the pages using this example:
 
 ```html
-<a href="javascript:{};" onclick="plainspaNavigateTo('contact')">Contact Us</a>
+<a href="/contact" onclick="return plainspaNavigateTo('contact')">Contact Us</a>
 ```
 
 The above example assumes that there is a `contact.html` file in the `/pages` folder.
@@ -21,7 +21,7 @@ The above example assumes that there is a `contact.html` file in the `/pages` fo
 You can also create links to a subdirectory and also pass parameters to the url this way:
 
 ```html
-<li><a href="javascript:{};" onclick="plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
+<li><a href="/subfolder/aboutus?value1=c&value2=d" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
 ```
 
 The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
