@@ -51,6 +51,8 @@ function plainspaNavigateTo(page, pQuery = '') {
 	var pageBar = page;
 	if (pageBar == "home") { pageBar = ""; }
 	window.history.pushState({ page: page }, null, `/` + pageBar + pQuery);
+
+	return false;
 }
 
 // load the contents of the page
