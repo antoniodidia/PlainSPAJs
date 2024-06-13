@@ -6,7 +6,7 @@ var pagesFileExtension = ".html";
 // on first load or refresh, it analyzes the browser URL
 
 var requestPage = plainspaGetPath();
-var parameterQuery = getUrlParameters(window.location);
+var parameterQuery = plainspaGetUrlParameters(window.location);
 
 if (requestPage.length == 0 || requestPage == indexFileName) {
 	requestPage = "home";
@@ -30,10 +30,10 @@ function plainspaGetPath() {
 }
 
 // get url parameters in a string
-function getUrlParameters(url) {
+function plainspaGetUrlParameters(url) {
 	const params = new URLSearchParams(url.search);
 	const paramArray = Array.from(params.entries());
-	const paramString = paramArray.map(([key, value]) => `${key}=${value}`).join('&');
+	const paramString = paramArray.map(([key, value]) => `${plainspaSanitize(key)}=${plainspaSanitize(value)}`).join('&');
 	return `?${paramString}`;
 }
 
@@ -45,6 +45,7 @@ window.addEventListener('popstate', function (event) {
 });
 
 function plainspaNavigateTo(page, pQuery = '') {
+	plainspaScrollToTop();
 	plainspaLoadPage(page, pQuery);
 
 	// simulate the page change and update the URL
@@ -55,10 +56,16 @@ function plainspaNavigateTo(page, pQuery = '') {
 	return false;
 }
 
+function plainspaScrollToTop() {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	});
+}
+
 // load the contents of the page
 function plainspaLoadPage(page, pQuery) {
 	const contentDiv = document.getElementById('plainspa-content');
-	contentDiv.innerHTML = '';
 
 	plainspaReadHtmlFile(page, pQuery)
 		.then(content => { contentDiv.innerHTML = content; })
@@ -220,4 +227,21 @@ function plainspaUpdateMetaDescription(newDescription) {
 		newMeta.content = newDescription;
 		document.head.appendChild(newMeta);
 	}
+}
+
+function plainspaSanitize(str) {
+	if (str) {
+		return str.replace(/[&<>"'/]/g, function (match) {
+			const escapeMap = {
+				'&': '&amp;',
+				'<': '&lt;',
+				'>': '&gt;',
+				'"': '&quot;',
+				"'": '&#x27;',
+				'/': '&#x2F;'
+			};
+			return escapeMap[match];
+		});
+	}
+	return str;
 }
