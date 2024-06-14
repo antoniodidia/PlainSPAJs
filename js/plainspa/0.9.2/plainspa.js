@@ -16,7 +16,7 @@ if (parameterQuery == "?") {
 	parameterQuery = "";
 }
 
-plainspaNavigateTo(requestPage, parameterQuery);
+plainspaLoadPage(requestPage, parameterQuery);
 
 // return the path after the domain name
 function plainspaGetPath() {
@@ -52,16 +52,21 @@ function plainspaNavigateTo(page, pQuery = '') {
 	if (pageBar == "home") { pageBar = ""; }
 	window.history.pushState({ page: page }, null, `/` + pageBar + pQuery);
 
+	plainspaScrollToTop();
 	return false;
 }
 
 function plainspaScrollToTop() {
 	setTimeout(() => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-	}, 200);
+		const scrollStep = -window.scrollY / 15;
+		const scrollInterval = setInterval(() => {
+			if (window.scrollY !== 0) {
+				window.scrollBy(0, scrollStep);
+			} else {
+				clearInterval(scrollInterval);
+			}
+		}, 15);
+	}, 100);
 }
 
 // load the contents of the page
@@ -69,8 +74,8 @@ function plainspaLoadPage(page, pQuery) {
 	const contentDiv = document.getElementById('plainspa-content');
 
 	plainspaReadHtmlFile(page, pQuery)
-		.then(content => { contentDiv.innerHTML = content; plainspaScrollToTop(); })
-		.catch(error => { contentDiv.innerHTML = "page loading error"; plainspaScrollToTop(); });
+		.then(content => { contentDiv.innerHTML = content; })
+		.catch(error => { contentDiv.innerHTML = "page loading error"; });
 }
 
 function plainspaAddProgressBar() {
