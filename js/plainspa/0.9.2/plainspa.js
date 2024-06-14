@@ -56,14 +56,12 @@ function plainspaNavigateTo(page, pQuery = '') {
 }
 
 function plainspaScrollToTop() {
-	const scrollStep = -window.scrollY / 15;
-	const scrollInterval = setInterval(() => {
-		if (window.scrollY !== 0) {
-			window.scrollBy(0, scrollStep);
-		} else {
-			clearInterval(scrollInterval);
-		}
-	}, 15);
+	setTimeout(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	}, 200);
 }
 
 // load the contents of the page
@@ -71,8 +69,8 @@ function plainspaLoadPage(page, pQuery) {
 	const contentDiv = document.getElementById('plainspa-content');
 
 	plainspaReadHtmlFile(page, pQuery)
-		.then(content => { plainspaScrollToTop(); contentDiv.innerHTML = content; })
-		.catch(error => { plainspaScrollToTop(); contentDiv.innerHTML = "page loading error"; });
+		.then(content => { contentDiv.innerHTML = content; plainspaScrollToTop(); })
+		.catch(error => { contentDiv.innerHTML = "page loading error"; plainspaScrollToTop(); });
 }
 
 function plainspaAddProgressBar() {
