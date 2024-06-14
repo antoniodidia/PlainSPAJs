@@ -45,7 +45,6 @@ window.addEventListener('popstate', function (event) {
 });
 
 function plainspaNavigateTo(page, pQuery = '') {
-	plainspaScrollToTop();
 	plainspaLoadPage(page, pQuery);
 
 	// simulate the page change and update the URL
@@ -72,8 +71,8 @@ function plainspaLoadPage(page, pQuery) {
 	const contentDiv = document.getElementById('plainspa-content');
 
 	plainspaReadHtmlFile(page, pQuery)
-		.then(content => { contentDiv.innerHTML = content; })
-		.catch(error => { contentDiv.innerHTML = "page loading error"; });
+		.then(content => { plainspaScrollToTop(); contentDiv.innerHTML = content; })
+		.catch(error => { plainspaScrollToTop(); contentDiv.innerHTML = "page loading error"; });
 }
 
 function plainspaAddProgressBar() {
