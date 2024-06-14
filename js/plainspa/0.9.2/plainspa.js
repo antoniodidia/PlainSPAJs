@@ -16,7 +16,7 @@ if (parameterQuery == "?") {
 	parameterQuery = "";
 }
 
-plainspaLoadPage(requestPage, parameterQuery);
+plainspaNavigateTo(requestPage, parameterQuery, false);
 
 // return the path after the domain name
 function plainspaGetPath() {
@@ -44,7 +44,7 @@ window.addEventListener('popstate', function (event) {
 	}
 });
 
-function plainspaNavigateTo(page, pQuery = '') {
+function plainspaNavigateTo(page, pQuery = '', scroll = true) {
 	plainspaLoadPage(page, pQuery);
 
 	// simulate the page change and update the URL
@@ -52,7 +52,7 @@ function plainspaNavigateTo(page, pQuery = '') {
 	if (pageBar == "home") { pageBar = ""; }
 	window.history.pushState({ page: page }, null, `/` + pageBar + pQuery);
 
-	plainspaScrollToTop();
+	if (scroll) { plainspaScrollToTop(); }
 	return false;
 }
 
