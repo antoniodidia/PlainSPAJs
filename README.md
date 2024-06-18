@@ -26,9 +26,9 @@ You can also create links to a subdirectory and also pass parameters to the url 
 
 The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
 
-The content of the home "page" must always be in file `/pages/home.html`.
+The content of the initial "page" must always be in file `/pages/home.html`.
 
-You can go back to the home page with the link:
+You can go back to the initial page with the link:
 
 ```html
 <a href="/home" onclick="return plainspaNavigateTo('home')">Home</a>
