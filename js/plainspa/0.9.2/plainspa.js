@@ -109,6 +109,7 @@ function plainspaReadHtmlFile(fileName, pQuery) {
 					var result = plainspaExtractHtmlElements(xhr.responseText);
 					plainspaUpdateTitle(result.title);
 					plainspaUpdateMetaDescription(result.metaDescription);
+					plainspaUpdateLinkCanonical(result.canonical);
 					resolve(result.styles + plainspaRemoveJs(result.body));
 				} else {
 					progressBar.remove();
@@ -176,6 +177,15 @@ function plainspaExtractHtmlElements(htmlContent) {
 		}
 	}
 
+	var linkCanonical = '';
+	var linkTags = tempHtml.getElementsByTagName('link');
+	for (var i = 0; i < linkTags.length; i++) {
+		if (linkTags[i].getAttribute('rel') === 'canonical') {
+			linkCanonical = linkTags[i].getAttribute('href');
+			break;
+		}
+	}
+
 	var titleContent = '';
 	var titleTag = tempHtml.getElementsByTagName('title')[0];
 	if (titleTag) {
@@ -186,7 +196,8 @@ function plainspaExtractHtmlElements(htmlContent) {
 		body: bodyContent,
 		styles: stylesContent,
 		metaDescription: metaDescriptionContent,
-		title: titleContent
+		title: titleContent,
+		canonical: linkCanonical
 	};
 }
 
@@ -228,6 +239,24 @@ function plainspaUpdateMetaDescription(newDescription) {
 		newMeta.name = 'description';
 		newMeta.content = newDescription;
 		document.head.appendChild(newMeta);
+	}
+}
+
+// update the canonical url
+function plainspaUpdateLinkCanonical(newHref) {
+	if (typeof newHref !== 'string') {
+		return;
+	}
+
+	const linkCanonical = document.querySelector('link[rel="canonical"]');
+
+	if (linkCanonical) {
+		linkCanonical.setAttribute('href', newHref);
+	} else {
+		const newLinkCanonical = document.createElement('link');
+		newLinkCanonical.rel = 'canonical';
+		newLinkCanonical.href = newHref;
+		document.head.appendChild(newLinkCanonical);
 	}
 }
 
