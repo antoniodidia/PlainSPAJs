@@ -34,6 +34,8 @@ You can also create relative links to a subdirectory and also pass parameters to
 
 The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
 
+## Home page
+
 The content of the initial "page" must always be in file `/pages/home.html`.
 
 You can link to your home page using this example:
