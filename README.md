@@ -44,7 +44,7 @@ You can link to your home page using this example:
 <a href="/" class="plainspa">Home</a>
 ```
 
-## Other information
+## Other important information
 
 The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
 
