@@ -12,9 +12,19 @@
     <nav>
         <div class="titleMenu"><strong>PlainSPAJs Example</strong></div>
         <ul>
-            <li><a href="/home" onclick="return plainspaNavigateTo('home')">Home</a></li>
-            <li><a href="/subfolder/aboutus?value1=c&value2=d" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</a></li>
-            <li><a href="/contact" onclick="return plainspaNavigateTo('contact')">Contact</a></li>
+            <!-- IMPORTANT! To avoid reloading the SPA you must use relative URLs and insert "plainspa" in class property, like these -->
+            <li><a href="/" class="plainspa boldLink">Home</a> (no reload)</li>
+            <li><a href="/subfolder/aboutus?value1=c&value2=d" class="plainspa">About Us</a> (no reload)</li>
+            <li><a href="/contact" class="plainspa">Contact</a> (no reload)</li>
+
+            <!-- You can also change pages dynamically using the 'plainspaNavigateTo' function in this way -->
+            <li><span style="color: darkred; cursor:pointer" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</span> (programmatic change)</li>
+
+            <!-- If you don't use class="plainspa", then SPA will be reloaded -->
+            <li><a href="/">Reload SPA</a></li>
+
+            <!-- External link example -->
+            <li><a href="https://github.com/antoniodidia/PlainSPAJs" target="_blank" rel="noopener">PlainSPAJs</a> (external link)</li>
         </ul>
     </nav>
     
@@ -22,6 +32,7 @@
         <!-- the contents of the different "pages" will be loaded here -->
     </div>
 
+    <!-- Reference the PlainSPAJs library -->
 	<script src="/js/plainspa/0.9.2/plainspa.js"></script>
 </body>
 </html>
