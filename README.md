@@ -24,7 +24,7 @@ Finally, create __relative links__ between the pages using this example:
 
 The above example assumes that there is a `contact.html` file in the `/pages` folder.
 
-__IMPORTANT__. You need to add the `plainspa` class to the internal links, if you don't want the browser to reload the page.
+__IMPORTANT__. You need to add the `plainspa` class to the relative links, if you don't want the browser load the entire page.
 
 You can also create relative links to a subdirectory and also pass parameters to the url this way:
 
