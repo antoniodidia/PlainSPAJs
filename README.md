@@ -14,6 +14,8 @@ Then, create the subpages and place them in the `/pages` folder.
 
 Each subpage can also contain `<title>` and `<meta name="description" content="">` tags.
 
+## Create your links
+
 Finally, create __relative links__ between the pages using this example:
 
 ```html
@@ -39,6 +41,8 @@ You can link to your home page using this example:
 ```html
 <a href="/" class="plainspa">Home</a>
 ```
+
+## Other information
 
 The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
 
