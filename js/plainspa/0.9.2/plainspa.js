@@ -1,40 +1,73 @@
 // Copyright (c) Antonio Di Dia. All Rights Reserved. Licensed under the MIT License. See LICENSE in the project root for license information.
 
-var indexFileName = "index.html";
-var pagesFileExtension = ".html";
+const indexFileName = "index.html";
+const pagesFileExtension = ".html";
 
-// on first load or refresh, it analyzes the browser URL
+// on first load or refresh, analyze the browser URL and get pathname and querystring
 
-var requestPage = plainspaGetPath();
-var parameterQuery = plainspaGetUrlParameters(window.location);
+var requestPage = window.location.pathname.toString();
+
+if (requestPage.charAt(0) === '/') {
+	requestPage = requestPage.substring(1);
+}
 
 if (requestPage.length == 0 || requestPage == indexFileName) {
 	requestPage = "home";
 }
 
+var parameterQuery = plainspaSanitizeQueryString(window.location.search.toString());
+
 if (parameterQuery == "?") {
 	parameterQuery = "";
 }
 
+plainspaCheckDivContent();
 plainspaNavigateTo(requestPage, parameterQuery, false);
 
-// return the path after the domain name
-function plainspaGetPath() {
-	var urlCompleto = window.location.pathname;
-
-	if (urlCompleto.charAt(0) === '/') {
-		urlCompleto = urlCompleto.slice(1);
+// adds the page container if it is not present
+function plainspaCheckDivContent() {
+	if (!document.getElementById('plainspa-content')) {
+		var plainspaContent = document.createElement('div');
+		plainspaContent.id = 'plainspa-content';
+		document.body.appendChild(plainspaContent);
 	}
-
-	return urlCompleto;
 }
 
-// get url parameters in a string
-function plainspaGetUrlParameters(url) {
-	const params = new URLSearchParams(url.search);
-	const paramArray = Array.from(params.entries());
-	const paramString = paramArray.map(([key, value]) => `${plainspaSanitize(key)}=${plainspaSanitize(value)}`).join('&');
-	return `?${paramString}`;
+// listen to the click event of the 'A' tags
+document.addEventListener('click', function (event) {
+	const link = event.target.closest('a');
+
+	if (link) {
+		var hrefValue = link.getAttribute('href');
+
+		if (hrefValue && hrefValue.trim() !== '') {
+			if (link.classList.contains('plainspa') && hrefValue.indexOf('http') == -1) {
+				event.preventDefault();
+				if (hrefValue.charAt(0) === '/') { hrefValue = hrefValue.substring(1); }
+				var [requestPageLink, parameterQueryLink] = plainspaSplitUrl(hrefValue);
+
+				if (requestPageLink.length == 0 || requestPageLink == indexFileName) {
+					requestPageLink = "home";
+				}
+
+				plainspaNavigateTo(requestPageLink, parameterQueryLink)
+			}
+		}
+	}
+});
+
+// split the link url and get pathname and querystring
+function plainspaSplitUrl(url) {
+	const index = url.indexOf('?');
+
+	if (index !== -1) {
+		var path = url.substring(0, index);
+		var queryString = plainspaSanitizeQueryString(url.substring(index));
+		return [path, queryString];
+	} else {
+		var path = url;
+		return [path, ''];
+	}
 }
 
 // page change management when you press the "Back" or "Forward" button in the browser
@@ -44,6 +77,7 @@ window.addEventListener('popstate', function (event) {
 	}
 });
 
+// go to the requested page
 function plainspaNavigateTo(page, pQuery = '', scroll = true) {
 	plainspaLoadPage(page, pQuery);
 
@@ -260,11 +294,25 @@ function plainspaUpdateLinkCanonical(newHref) {
 	}
 }
 
+function plainspaSanitizeQueryString(queryString) {
+	queryString = queryString.startsWith('?') ? queryString.substring(1) : queryString;
+
+	const params = new URLSearchParams(queryString);
+
+	const sanitizedParams = [];
+
+	params.forEach((value, key) => {
+		sanitizedParams.push(`${encodeURIComponent(plainspaSanitize(key))}=${encodeURIComponent(plainspaSanitize(value))}`);
+	});
+
+	return '?' + sanitizedParams.join('&');
+}
+
 function plainspaSanitize(str) {
 	if (str) {
 		return str.replace(/[&<>"'/]/g, function (match) {
 			const escapeMap = {
-				'&': '&amp;',
+				'&': '',
 				'<': '&lt;',
 				'>': '&gt;',
 				'"': '&quot;',
