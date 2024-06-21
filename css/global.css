@@ -1,18 +1,25 @@
 body {
 	font-family: Verdana, sans-serif;
 	margin: 0;
-	padding: 24px;
+	padding: 12px;
+	display: flex;
 }
 
 h1{
 	color: #0094ff;
 }
 
+.boldLink{
+	font-weight: bold;
+}
+
 nav {
 	background-color: #eeeeee;
-	color: #fff;
+	color: #333;
 	width: 20%;
+	min-width: 300px;
 	float: left;
+	margin-right: 12px;
 }
 
 	nav ul {
@@ -25,9 +32,11 @@ nav {
 		}
 
 #plainspa-content {
-	float: right;
-	width: 70%;
-	padding: 2px;
+	width: 100%;
+}
+
+#plainspa-content section {
+	padding: 24px;
 }
 
 .titleMenu {
@@ -69,6 +78,11 @@ button {
 	}
 
 @media (max-width: 768px) {
+
+	body {
+		display: initial;
+	}
+
 	nav, #plainspa-content {
 		width: 100%;
 		float: none;
