@@ -13,12 +13,12 @@
         <div class="titleMenu"><strong>PlainSPAJs Example</strong></div>
         <ul>
             <!-- IMPORTANT! To avoid reloading the SPA you must use relative URLs and insert "plainspa" in class property, like these -->
-            <li><a href="/" class="plainspa boldLink">Home</a> (no reload)</li>
-            <li><a href="/subfolder/aboutus?value1=c&value2=d" class="plainspa">About Us</a> (no reload)</li>
-            <li><a href="/contact" class="plainspa">Contact</a> (no reload)</li>
+            <li><a href="/" class="plainspa boldLink">Home</a></li>
+            <li><a href="/subfolder/aboutus?value1=c&value2=d" class="plainspa">About Us</a></li>
+            <li><a href="/contact" class="plainspa">Contact</a></li>
 
             <!-- You can also change pages dynamically using the 'plainspaNavigateTo' function in this way -->
-            <li><span style="color: darkred; cursor:pointer" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</span> (programmatic change)</li>
+            <li><span style="color: darkred; cursor:pointer" onclick="return plainspaNavigateTo('subfolder/aboutus', '?value1=c&value2=d')">About Us</span> (programmatic)</li>
 
             <!-- If you don't use class="plainspa", then SPA will be reloaded -->
             <li><a href="/">Reload SPA</a></li>
