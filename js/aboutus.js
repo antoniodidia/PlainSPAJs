@@ -1,10 +1,10 @@
 function isElementCreated(elId, callback) {
-    const intervalId = setInterval(() => {
-        if (document.getElementById(elId)) {
-            clearInterval(intervalId);
-            callback(true);
-        }
-    }, 200);
+	const intervalId = setInterval(() => {
+		if (document.getElementById(elId)) {
+			clearInterval(intervalId);
+			callback(true);
+		}
+	}, 200);
 }
 
 isElementCreated('parameterExample', (result) => {
