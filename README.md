@@ -48,7 +48,7 @@ You can link to your home page using this example:
 
 The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
 
-For better SEO, you can specify title, description, and canonical tags directly on the sub-pages, and these will be dynamically loaded as the a modern spider browses the pages.
+For better SEO, you can specify title, description, and canonical tags directly on the sub-pages, and these will be dynamically loaded as the a modern spider browses the web site.
 
 Remember to configure the rewrite rules to `index.html` in your hosting setting (you can use the example `web.config` and `.htaccess` files from this project).
 
