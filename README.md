@@ -44,6 +44,6 @@ The content of the various pages will be dynamically loaded into the ```<div id=
 
 For better SEO, you can specify title, description, and canonical tags directly on the sub-pages, and these will be dynamically loaded as the user browses the pages.
 
-Remember to configure the rewrite rules towards `index.html` in your hosting setting (you can use the example `web.config` and `.htaccess` files from this project).
+Remember to configure the rewrite rules to `index.html` in your hosting setting (you can use the example `web.config` and `.htaccess` files from this project).
 
 It is recommended to first practice in a test and isolated web space.
