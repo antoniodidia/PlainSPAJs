@@ -14,7 +14,7 @@ Then, create the subpages and place them in the `/pages` folder.
 
 Each subpage can also contain `<title>` and `<meta name="description" content="">` tags.
 
-## Create your links with relative URL e `plainspa` class
+## Create your links with relative URL and `plainspa` class
 
 Finally, create __relative links__ between the pages using this example:
 
