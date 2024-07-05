@@ -104,41 +104,44 @@ function plainspaLoadPage(page, pQuery) {
 	const contentDiv = document.getElementById('plainspa-content');
 
 	plainspaReadHtmlFile(page, pQuery)
-		.then(content => { contentDiv.innerHTML = content; })
-		.catch(error => { contentDiv.innerHTML = "page loading error"; });
+		.then(content => { contentDiv.innerHTML = content; setTimeout(() => { plainspaRemoveProgressBar(); }, 500); })
+		.catch(error => { contentDiv.innerHTML = "page loading error"; plainspaRemoveProgressBar(); });
 }
 
 function plainspaAddProgressBar() {
+	progressBar = document.createElement('div');
+	progressBar.id = 'plainspa-progress-bar';
+	document.body.appendChild(progressBar);
+}
+
+function plainspaRemoveProgressBar() {
 	var progressBar = document.getElementById('plainspa-progress-bar');
 	if (progressBar) {
 		progressBar.parentNode.removeChild(progressBar);
 	}
-
-	progressBar = document.createElement('div');
-	progressBar.id = 'plainspa-progress-bar';
-	document.body.appendChild(progressBar);
 }
 
 function plainspaReadHtmlFile(fileName, pQuery) {
 	return new Promise((resolve, reject) => {
 		var xhr = new XMLHttpRequest();
 
+		plainspaRemoveProgressBar();
 		plainspaAddProgressBar();
 		var progressBar = document.getElementById('plainspa-progress-bar');
 
 		xhr.open('GET', '/pages/' + fileName + pagesFileExtension + pQuery, true);
+		progressBar.style.width = '7%';
 
 		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 1) {
-				progressBar.style.width = '0%';
-			} else if (xhr.readyState === 3) {
+			if (xhr.readyState === 0) {
+				progressBar.style.width = '25%';
+			} else if (xhr.readyState === 1) {
 				progressBar.style.width = '50%';
+			} else if (xhr.readyState === 3) {
+				progressBar.style.width = '75%';
 			} else if (xhr.readyState === 4) {
 				if (xhr.status === 200) {
 					progressBar.style.width = '100%';
-					setTimeout(() => {
-						progressBar.remove();
-					}, 500);
 					plainspaLaunchJs(xhr.responseText);
 					var result = plainspaExtractHtmlElements(xhr.responseText);
 					plainspaUpdateTitle(result.title);
@@ -146,7 +149,6 @@ function plainspaReadHtmlFile(fileName, pQuery) {
 					plainspaUpdateLinkCanonical(result.canonical);
 					resolve(result.styles + plainspaRemoveJs(result.body));
 				} else {
-					progressBar.remove();
 					reject(new Error(xhr.statusText));
 				}
 			}
