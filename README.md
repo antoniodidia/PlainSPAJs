@@ -36,6 +36,9 @@ Install the library
 npm install plainspajs
 ```
 
+*Tip:
+If you want to try out the library right away, upload the contents of the *plainspajs* subfolder to your test hosting environment on Apache or IIS (see the *Server Configuration* section).*
+
 Then reference it in your project:
 
 ```html
