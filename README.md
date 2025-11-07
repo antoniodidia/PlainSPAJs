@@ -84,11 +84,11 @@ Example files are provided:
 ---
 
 ## Features
-- ✅ No dependencies  
-- ⚡ Fast and lightweight  
-- 🧱 Simple SPA structure (HTML-only)  
-- 🔍 SEO-friendly (dynamic meta handling)  
-- 🌐 Works with Apache/IIS static hosting  
+- No dependencies  
+- Fast and lightweight  
+- Simple SPA structure (HTML-only)  
+- SEO-friendly (dynamic meta handling)  
+- Works with Apache/IIS static hosting  
 
 ---
 
