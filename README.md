@@ -106,6 +106,6 @@ MIT © [Antonio Di Dia](https://github.com/antoniodidia)
 
 ---
 
-## 🔗 Useful Links
+## Useful Links
 - **NPM:** [https://www.npmjs.com/package/plainspajs](https://www.npmjs.com/package/plainspajs)  
 - **GitHub:** [https://github.com/antoniodidia/PlainSPAJs](https://github.com/antoniodidia/PlainSPAJs)
