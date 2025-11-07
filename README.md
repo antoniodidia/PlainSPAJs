@@ -1,55 +1,111 @@
 # PlainSPAJs
 
-Extremely easy Javascript framework to create simple websites in Single Page Application (SPA).
+**PlainSPAJs** is an extremely simple JavaScript framework to build lightweight Single Page Application (SPA) websites — with **no dependencies** and **no need to write JavaScript**.
 
-## Create a Modern Single Page Application Website in Minutes
+---
 
-Upload the project files to your empty web space root (IIS or Apache) and start editing the `index.html` file, which serves as the template for the website.
+## 🚀 Quick Start
 
-The PlainSPAJs library needs to be referenced only in the index.html file, before closing the `<body>` tag, like this:
+### Option 1 — Use via CDN (recommended)
+Add the following script before the closing `</body>` tag in your `index.html`:
 
-```<script src="/js/plainspa/1.0.0/plainspa.js"></script>```
+```html
+<script src="https://unpkg.com/plainspajs@1.0.0/js/plainspa/1.0.0/plainspa.js"></script>
+```
 
-Then, create the subpages and place them in the `/pages` folder.
+That’s all you need to start using PlainSPAJs.
 
-Each subpage can also contain `<title>` and `<meta name="description" content="">` tags.
+---
 
-## Create your links with relative URL and `plainspa` class
+### Option 2 — Install via npm
+If you prefer to include it locally or in a build process:
 
-Finally, create __relative links__ between the pages using this example:
+```bash
+npm install plainspajs
+```
+
+Then reference it in your project:
+
+```html
+<script src="./node_modules/plainspajs/js/plainspa/1.0.0/plainspa.js"></script>
+```
+
+or import it in JavaScript:
+
+```js
+import 'plainspajs/js/plainspa/1.0.0/plainspa.js';
+```
+
+---
+
+## 🧭 Create Links
+
+Use **relative links** with the `plainspa` class to enable SPA navigation:
 
 ```html
 <a href="/contact" class="plainspa">Contact Us</a>
 ```
 
-The above example assumes that there is a `contact.html` file in the `/pages` folder.
-
-__IMPORTANT__. You need to add the `plainspa` class to the relative links, if you don't want the browser load the entire page.
-
-You can also create relative links to a subdirectory and also pass parameters to the url this way:
+- `/contact` loads `/pages/contact.html`  
+- `/` loads `/pages/home.html`  
+- You can also include query parameters or subfolders:
 
 ```html
 <a href="/subfolder/aboutus?value1=c&value2=d" class="plainspa">About Us</a>
 ```
 
-The above example assumes that there is a `aboutus.html` file in the `/pages/subfolder` folder.
+---
 
-## Home page
+## 🧩 Page Content & SEO
 
-The content of the initial "page" must always be in file `/pages/home.html`.
-
-You can link to your home page using this example:
+Each page is dynamically loaded into:
 
 ```html
-<a href="/" class="plainspa">Home</a>
+<div id="plainspa-content"></div>
 ```
 
-## Other important information
+You can include in each subpage:
+```html
+<title>My Page</title>
+<meta name="description" content="Page description here">
+```
 
-The content of the various pages will be dynamically loaded into the ```<div id="plainspa-content"></div>``` of the index.html file.
+These will be dynamically updated for better SEO and crawler compatibility.
 
-For better SEO, you can specify title, description, and canonical tags directly on the sub-pages, and these will be dynamically loaded as a modern spider browses the web site.
+---
 
-Remember to configure the rewrite rules to `index.html` in your hosting setting (you can use the example `web.config` and `.htaccess` files from this project).
+## ⚙️ Server Configuration
 
-It is recommended to first practice in a test and isolated web space.
+Make sure your hosting rewrites all routes to `index.html`.  
+Example files are provided:
+- `.htaccess` (Apache)
+- `web.config` (IIS)
+
+---
+
+## ✨ Features
+- ✅ No dependencies  
+- ⚡ Fast and lightweight  
+- 🧱 Simple SPA structure (HTML-only)  
+- 🔍 SEO-friendly (dynamic meta handling)  
+- 🌐 Works with Apache/IIS static hosting  
+
+---
+
+## 📦 Installation Summary
+| Method | Command / URL | Description |
+|--------|----------------|-------------|
+| **CDN** | `<script src="https://unpkg.com/plainspajs"></script>` | Always latest version |
+| **NPM** | `npm install plainspajs` | Install locally for custom builds |
+| **Manual** | Copy `/js/plainspa/1.0.0/plainspa.js` | Direct file include |
+
+---
+
+## 📄 License
+MIT © [Antonio Didia](https://github.com/antoniodidia)
+
+---
+
+## 🔗 Useful Links
+- **NPM:** [https://www.npmjs.com/package/plainspajs](https://www.npmjs.com/package/plainspajs)  
+- **GitHub:** [https://github.com/antoniodidia/PlainSPAJs](https://github.com/antoniodidia/PlainSPAJs)
