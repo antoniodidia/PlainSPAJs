@@ -20,6 +20,18 @@ That’s all you need to start using PlainSPAJs.
 ### Option 2 » Install via npm
 If you prefer to include it locally or in a build process:
 
+Create a folder for the project
+```bash
+mkdir my-project
+cd my-project
+```
+
+Initialize the npm project
+```bash
+npm init -y
+```
+
+Install the library
 ```bash
 npm install plainspajs
 ```
