@@ -48,8 +48,7 @@ or import it in JavaScript:
 import 'plainspajs/js/plainspa/1.0.0/plainspa.js';
 ```
 
-*Tip:
-If you want to try out the library right away, upload the contents of the *plainspajs* subfolder to your test hosting environment on Apache or IIS (see the *Server Configuration* section).*
+⚠️ Demo setup: PlainSPAJs requires URL rewriting to work properly. Please host the files on a test Apache or IIS server before trying the library.
 
 ---
 
