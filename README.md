@@ -6,7 +6,7 @@
 
 ## Quick Start
 
-### Option 1 — Use via CDN (recommended)
+### Option 1 » Use via CDN (recommended)
 Add the following script before the closing `</body>` tag in your `index.html`:
 
 ```html
@@ -17,7 +17,7 @@ That’s all you need to start using PlainSPAJs.
 
 ---
 
-### Option 2 — Install via npm
+### Option 2 » Install via npm
 If you prefer to include it locally or in a build process:
 
 ```bash
@@ -83,7 +83,7 @@ Example files are provided:
 
 ---
 
-## ✨ Features
+## Features
 - ✅ No dependencies  
 - ⚡ Fast and lightweight  
 - 🧱 Simple SPA structure (HTML-only)  
@@ -92,7 +92,7 @@ Example files are provided:
 
 ---
 
-## 📦 Installation Summary
+## Installation Summary
 | Method | Command / URL | Description |
 |--------|----------------|-------------|
 | **CDN** | `<script src="https://unpkg.com/plainspajs"></script>` | Always latest version |
@@ -101,7 +101,7 @@ Example files are provided:
 
 ---
 
-## 📄 License
+## License
 MIT © [Antonio Di Dia](https://github.com/antoniodidia)
 
 ---
