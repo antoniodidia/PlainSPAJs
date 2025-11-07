@@ -2,7 +2,7 @@
 
 **PlainSPAJs** is an extremely simple JavaScript framework to build lightweight Single Page Application (SPA) websites, with **no dependencies** and **no need to write JavaScript**.
 
-⚠️ Requires URL rewriting to work properly. Host the files on a test Apache or IIS server before trying the library.
+📌 Requires URL rewriting to work properly. Host the files on a test Apache or IIS server before trying the library.
 
 ---
 
