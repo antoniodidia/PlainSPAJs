@@ -8,7 +8,7 @@ Upload the project files to your empty web space root (IIS or Apache) and start 
 
 The PlainSPAJs library needs to be referenced only in the index.html file, before closing the `<body>` tag, like this:
 
-```<script src="/js/plainspa/0.9.2/plainspa.js"></script>```
+```<script src="/js/plainspa/1.0.0/plainspa.js"></script>```
 
 Then, create the subpages and place them in the `/pages` folder.
 
