@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Option 1 — Use via CDN (recommended)
 Add the following script before the closing `</body>` tag in your `index.html`:
@@ -38,7 +38,7 @@ import 'plainspajs/js/plainspa/1.0.0/plainspa.js';
 
 ---
 
-## 🧭 Create Links
+## Create Links
 
 Use **relative links** with the `plainspa` class to enable SPA navigation:
 
@@ -56,7 +56,7 @@ Use **relative links** with the `plainspa` class to enable SPA navigation:
 
 ---
 
-## 🧩 Page Content & SEO
+## Page Content & SEO
 
 Each page is dynamically loaded into:
 
@@ -102,7 +102,7 @@ Example files are provided:
 ---
 
 ## 📄 License
-MIT © [Antonio Didia](https://github.com/antoniodidia)
+MIT © [Antonio Di Dia](https://github.com/antoniodidia)
 
 ---
 
